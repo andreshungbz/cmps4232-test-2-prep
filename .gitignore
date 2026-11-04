@@ -38,3 +38,12 @@ devenv.local.yaml
 
 # direnv
 .direnv
+
+# Ignore script-generated files and directories.
+bin/
+cmd/
+internals/
+migrations/
+remote/
+go.mod
+make-file

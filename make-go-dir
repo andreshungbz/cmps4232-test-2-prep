@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# a) Require exactly 2 arguments.
+if [[ "$#" -ne 2 ]]; then
+  echo "You need to provide two arguments for this script to work."
+  echo "Usage: make-go-dir <root directory name> <identifier name>"
+  exit 1
+fi
+
+DIRECTORY_NAME="$1"
+IDENTIFIER_NAME="$2"
+
+# b) Verify directory structure with user.
+echo "I am about to create a directory structure named '${DIRECTORY_NAME}'."
+echo -n "Do you want me to continue? [Yes/no]: "
+read RESPONSE
+
+# c) Proceed when user types 'Yes'.
+if [[ "$RESPONSE" == "Yes" ]]; then
+  echo "Create directory structure..."
+# d) Stop when user types anything else.
+else
+  echo "Abort."
+  exit 2
+fi
+
+# e) Create directory structure.
+mkdir -p "$DIRECTORY_NAME"
+mkdir -p "$DIRECTORY_NAME"/{cmd,internals,migrations,remote}
+mkdir -p "$DIRECTORY_NAME"/cmd/api
+# f) Write hello world program to main.go file.
+STARTER_CODE='// File: cmd/api/main.go
+
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Hello world!")
+}'
+touch "$DIRECTORY_NAME"/cmd/api/main.go && echo -e "$STARTER_CODE" > "$DIRECTORY_NAME"/cmd/api/main.go
+touch "$DIRECTORY_NAME"/make-file
+# g) Initialize go module with identifier.
+cd "$DIRECTORY_NAME" && go mod init "$DIRECTORY_NAME"."$IDENTIFIER_NAME" > /dev/null 2>&1 && cd ..
+
+# h) Inform user of the created project.
+printf "I have created a \e[1mmain.go\e[0m file for you to test the directory structure.\n"
+printf "Type \e[1mgo run ./cmd/api\e[0m at the root directory of your project to test your project.\n"
+echo "Thank you."

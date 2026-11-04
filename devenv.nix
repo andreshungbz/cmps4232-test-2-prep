@@ -5,7 +5,7 @@
 {
   # https://devenv.sh/packages/
   packages = with pkgs; [
-
+    gnumake
   ];
 
   # https://devenv.sh/languages/

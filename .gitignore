@@ -1,0 +1,40 @@
+# Environment & secrets
+.env
+.envrc
+
+# Storage artifacts
+storage/
+
+# Editor artifacts
+.vscode/
+.zed/
+
+# Compiled binaries
+bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Go test & build artifacts
+*.test
+*.out
+
+# Vendor
+vendor/
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Curl response file
+response.json
+
+# Devenv
+.devenv*
+devenv.local.nix
+devenv.local.yaml
+
+# direnv
+.direnv
